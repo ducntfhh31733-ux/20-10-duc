@@ -1,3 +1,4 @@
+
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
@@ -10,20 +11,29 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://vo-yeu-20-10.vercel.app"),
-  title: "Chúc Vợ Yêu Ngày 20/10 Thật Nhiều Hạnh Phúc ❤️",
-  description: "Món quà bất ngờ và những lời yêu thương chân thành nhất dành tặng người phụ nữ tuyệt vời nhất của anh!",
+
+  title: "Món Quà 20/10 Dành Tặng Mẹ Yêu ❤️",
+
+  description:
+    "Món quà nhỏ chứa đựng tình yêu thương, lòng biết ơn và những lời chúc chân thành nhất con dành tặng mẹ nhân ngày Phụ nữ Việt Nam 20/10.",
+
   openGraph: {
-    title: "Chúc Vợ Yêu Ngày 20/10 Thật Nhiều Hạnh Phúc ❤️",
-    description: "Món quà bất ngờ và những lời yêu thương chân thành nhất anh dành tặng riêng cho em!",
+    title: "Món Quà 20/10 Dành Tặng Mẹ Yêu ❤️",
+
+    description:
+      "Gửi mẹ những lời yêu thương, những kỷ niệm đẹp và lời chúc hạnh phúc từ tận đáy lòng con.",
+
     images: [
       {
         url: "/images/bouquet.jpg",
         width: 1200,
         height: 1200,
-        alt: "Bó hoa tươi thắm chúc mừng 20/10",
+        alt: "Bó hoa tươi thắm con dành tặng mẹ nhân ngày 20/10",
       },
     ],
+
     type: "website",
+    locale: "vi_VN",
   },
 };
 
