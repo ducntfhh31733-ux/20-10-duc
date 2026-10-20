@@ -1,65 +1,67 @@
 import { CoupleConfig, CouponItem, ReasonItem } from "@/types";
 
 export const DEFAULT_CONFIG: CoupleConfig = {
-  wifeName: "Vợ Yêu",
-  husbandName: "Chồng Cưng",
-  startDate: "2023-08-06", // Ngày 06/08/2023 dương lịch
-  letterTitle: "Gửi người phụ nữ tuyệt vời nhất của cuộc đời anh",
-  letterMessage: `Nhân ngày Phụ nữ Việt Nam 20/10, anh muốn dành những lời chân thành và ấm áp nhất gửi đến em — người vợ dịu dàng, người bạn đồng hành tuyệt vời và là bến đỗ bình yên nhất của anh.
+  wifeName: "Mẹ Yêu",
+  husbandName: "Con Yêu",
+  startDate: "2023-08-06",
+  letterTitle: "Gửi người phụ nữ tuyệt vời nhất cuộc đời con",
+  letterMessage: `Nhân ngày Phụ nữ Việt Nam 20/10, con muốn gửi đến mẹ những lời chúc yêu thương và chân thành nhất.
 
-Cảm ơn em vì đã luôn ở bên cạnh, cùng anh chia sẻ từng bữa cơm, từng niềm vui nhỏ bé và cả những lúc khó khăn. Sự chu đáo, nụ cười rạng rỡ và tình yêu của em chính là động lực lớn nhất để anh nỗ lực mỗi ngày.
+Cảm ơn mẹ vì đã luôn yêu thương, chăm sóc và hy sinh cho con. Cảm ơn mẹ vì những bữa cơm ấm áp, những lời dạy bảo và vòng tay dịu dàng mỗi khi con gặp khó khăn. Với con, mẹ luôn là người phụ nữ tuyệt vời nhất, là chỗ dựa bình yên và là người con yêu thương nhất trên đời.
 
-Chúc vợ của anh ngày 20/10 thật nhiều niềm vui, luôn xinh đẹp rạng ngời, mãi giữ nụ cười hạnh phúc trên môi và an tâm rằng phía sau em luôn có anh che chở, yêu thương vô điều kiện! Yêu vợ rất nhiều ❤️`,
+Nhân ngày 20/10, con chúc mẹ luôn mạnh khỏe, vui vẻ, bình an và lúc nào cũng nở nụ cười trên môi. Mong rằng mỗi ngày của mẹ đều tràn ngập niềm vui, hạnh phúc và yêu thương. Con sẽ cố gắng học tập thật tốt để mẹ luôn tự hào và yên lòng.
+
+Con yêu mẹ rất nhiều! ❤️`,
   songUrl: "/music.mp3",
 };
 
 export const INITIAL_COUPONS: CouponItem[] = [
   {
     id: "coupon-1",
-    title: "Vé Massage VIP Toàn Thân",
-    desc: "Massage lưng, vai gáy & ngâm chân nước ấm bất cứ khi nào vợ thấy mỏi. Phục vụ 24/7!",
-    badge: "VIP Không Giới Hạn",
+    title: "Phiếu Massage Thư Giãn Cho Mẹ",
+    desc: "Con sẽ giúp mẹ massage vai, cổ và lưng nhẹ nhàng để mẹ thư giãn sau một ngày vất vả.",
+    badge: "Đặc Quyền Của Mẹ",
     iconName: "Sparkles",
     redeemed: false,
   },
   {
     id: "coupon-2",
-    title: "Phiếu Miễn Rửa Bát & Dọn Dẹp 1 Tuần",
-    desc: "Chồng đảm nhiệm toàn bộ chén bát và nhà cửa sạch bóng, vợ chỉ việc nằm nghỉ ngơi.",
-    badge: "Đặc Quyền Nữ Hoàng",
+    title: "Một Tuần Không Để Mẹ Làm Việc Nhà",
+    desc: "Con sẽ phụ mẹ rửa bát, quét nhà và dọn dẹp để mẹ có thêm thời gian nghỉ ngơi.",
+    badge: "Mẹ Cứ Nghỉ Ngơi",
     iconName: "Utensils",
     redeemed: false,
   },
   {
     id: "coupon-3",
-    title: "Thẻ Shopping Không Cằn Nhằn",
-    desc: "Chồng đi cùng xách đồ, kiên nhẫn đợi thử đồ và luôn khen: 'Em mặc gì cũng xinh hết nấc!'",
-    badge: "Hạn Sử Dụng Vĩnh Viễn",
+    title: "Một Buổi Đi Chơi Cùng Mẹ",
+    desc: "Con sẽ dành thời gian đưa mẹ đi dạo, mua sắm hoặc đến nơi mẹ yêu thích.",
+    badge: "Ngày Đặc Biệt Của Mẹ",
     iconName: "ShoppingBag",
     redeemed: false,
   },
   {
     id: "coupon-4",
-    title: "Vé 'Chồng Nhận Sai Trước'",
-    desc: "Bất kể cãi nhau chuyện gì, chỉ cần giơ vé này ra là chồng tự động nhận sai và dỗ dành ngay!",
-    badge: "Quyền Năng Tối Thượng",
-    iconName: "Award",
-    redeemed: false,
-  },
-  {
-    id: "coupon-5",
-    title: "Bữa Tối Lãng Mạn 2 Người",
-    desc: "Một buổi hẹn hò riêng tư tại nhà hàng vợ thích, hoặc chồng tự tay vào bếp nấu món vợ mê.",
-    badge: "Date Night Đặc Biệt",
+    title: "Phiếu Ôm Mẹ Thật Chặt",
+    desc: "Con sẽ dành cho mẹ một cái ôm thật ấm áp và nói lời yêu thương mà đôi khi con còn ngại ngùng chưa nói.",
+    badge: "Yêu Thương Vô Hạn",
     iconName: "Heart",
     redeemed: false,
   },
   {
+    id: "coupon-5",
+    title: "Bữa Ăn Đặc Biệt Cùng Mẹ",
+    desc: "Con sẽ phụ mẹ chuẩn bị một bữa ăn ngon hoặc cùng mẹ thưởng thức món ăn mẹ yêu thích.",
+    badge: "Bữa Ăn Hạnh Phúc",
+    iconName: "ChefHat",
+    redeemed: false,
+  },
+  {
     id: "coupon-6",
-    title: "Gói 1000 Nụ Hôn & Cái Ôm Ấm Áp",
-    desc: "Dùng để nạp năng lượng bất kỳ lúc nào vợ thấy mệt mỏi hay cần được vỗ về.",
-    badge: "Ngọt Ngào Vô Hạn",
-    iconName: "Flame",
+    title: "Phiếu Giúp Mẹ Mọi Lúc",
+    desc: "Khi mẹ cần giúp đỡ, con sẽ cố gắng chủ động phụ mẹ những việc phù hợp với khả năng của mình.",
+    badge: "Luôn Sẵn Sàng",
+    iconName: "HandHeart",
     redeemed: false,
   },
 ];
@@ -67,51 +69,57 @@ export const INITIAL_COUPONS: CouponItem[] = [
 export const REASONS_LIST: ReasonItem[] = [
   {
     id: 1,
-    emoji: "✨",
-    title: "Nụ cười rạng rỡ của em",
-    content: "Mỗi khi em cười, dường như mọi mệt mỏi trong ngày của anh đều tan biến. Em là ánh mặt trời nhỏ của anh.",
+    emoji: "❤️",
+    title: "Tình yêu thương của mẹ",
+    content:
+      "Mẹ luôn dành cho con tình yêu thương chân thành nhất. Với con, tình yêu của mẹ là món quà quý giá không gì thay thế được.",
   },
   {
     id: 2,
     emoji: "🍲",
-    title: "Bữa cơm ấm áp tình yêu",
-    content: "Dù là món cầu kỳ hay chỉ là tô canh giản dị, vị ngon nhất luôn là sự chăm sóc và yêu thương em gửi gắm.",
+    title: "Những bữa cơm mẹ nấu",
+    content:
+      "Mỗi bữa cơm mẹ chuẩn bị đều chứa đựng biết bao sự quan tâm. Đó là hương vị gia đình mà con luôn trân trọng.",
   },
   {
     id: 3,
-    emoji: "🌸",
-    title: "Sự dịu dàng & thấu hiểu",
-    content: "Em luôn biết lắng nghe, động viên và tin tưởng anh ngay cả trong những thời điểm anh hoang mang nhất.",
+    emoji: "🌷",
+    title: "Sự dịu dàng và bao dung",
+    content:
+      "Dù con có mắc lỗi hay gặp khó khăn, mẹ vẫn luôn kiên nhẫn chỉ bảo, động viên và cho con cơ hội trưởng thành.",
   },
   {
     id: 4,
     emoji: "🏡",
-    title: "Tổ ấm bình yên em vun vén",
-    content: "Có em, ngôi nhà mới thực sự là 'nhà' — nơi ngập tràn tiếng cười, sự ngăn nắp và hơi ấm gia đình.",
+    title: "Mái nhà bình yên",
+    content:
+      "Nhờ có mẹ, gia đình luôn là nơi ấm áp để con trở về, được yêu thương, sẻ chia và cảm nhận hạnh phúc.",
   },
   {
     id: 5,
-    emoji: "💖",
-    title: "Đôi mắt biết nói",
-    content: "Mỗi lần nhìn vào mắt em, anh lại thấy lý do vì sao mình muốn phấn đấu để trở thành người đàn ông tốt hơn.",
+    emoji: "🌟",
+    title: "Sự hy sinh thầm lặng",
+    content:
+      "Mẹ đã dành biết bao thời gian và công sức để chăm lo cho gia đình. Con luôn biết ơn những điều mẹ đã làm cho con.",
   },
   {
     id: 6,
-    emoji: "💍",
-    title: "Vì em là chính em",
-    content: "Đơn giản vì em là mảnh ghép hoàn hảo nhất, là món quà tuyệt vời nhất mà cuộc đời đã mang đến cho anh.",
+    emoji: "💐",
+    title: "Vì mẹ là mẹ của con",
+    content:
+      "Không cần mẹ phải hoàn hảo, chỉ cần mẹ luôn khỏe mạnh và hạnh phúc. Với con, mẹ mãi là người tuyệt vời nhất.",
   },
 ];
 
 export const SWEET_COMPLIMENTS = [
-  "Hôm nay vợ của anh trông cực kỳ xinh đẹp và quyến rũ! 🥰",
-  "Trong mắt anh, không ai có nụ cười đẹp và ngọt ngào bằng vợ! ✨",
-  "Lấy được em là quyết định đúng đắn và may mắn nhất cuộc đời anh! 💍",
-  "Cảm ơn em vì mỗi ngày đều biến ngôi nhà của chúng mình thành nơi bình yên nhất. 🏡",
-  "Em chính là người phụ nữ thông minh, tài giỏi và đáng yêu nhất trần đời! 🌟",
-  "Yêu em hôm nay nhiều hơn hôm qua, và chắc chắn ít hơn ngày mai! ❤️",
-  "Bất kể thời gian trôi qua bao lâu, trong tim anh em vẫn mãi là cô gái đẹp nhất! 🌹",
-  "Chỉ cần có em bên cạnh, khó khăn nào anh cũng có thể vượt qua! 💪",
-  "Vợ anh nấu ăn ngon nhất quả đất, không nhà hàng 5 sao nào sánh bằng! 🍲",
-  "Cả thế giới này có thể quay lưng, nhưng anh sẽ luôn đứng về phía vợ! 🛡️",
+  "Mẹ của con là người phụ nữ tuyệt vời nhất! ❤️",
+  "Con chúc mẹ mỗi ngày đều vui vẻ và nở nụ cười thật tươi! 🌷",
+  "Cảm ơn mẹ vì đã luôn yêu thương và chăm sóc con! 🥰",
+  "Mẹ nhớ giữ gìn sức khỏe và dành thời gian nghỉ ngơi nhé! 💖",
+  "Con mong mẹ luôn mạnh khỏe, bình an và hạnh phúc! 🌸",
+  "Mẹ là món quà quý giá nhất mà cuộc đời đã dành cho con! 🎁",
+  "Con sẽ cố gắng học tập thật tốt để mẹ vui lòng! 📚",
+  "Dù con có lớn đến đâu, con vẫn luôn là con của mẹ! ❤️",
+  "Mong những điều tốt đẹp nhất sẽ đến với mẹ mỗi ngày! 🌻",
+  "Con yêu mẹ nhiều lắm, hôm nay và cả những ngày sau nữa! 💐",
 ];

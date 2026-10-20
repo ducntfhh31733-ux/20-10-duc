@@ -1,8 +1,16 @@
+
 "use client";
 
 import { useState } from "react";
 import confetti from "canvas-confetti";
-import { Send, Heart, Sparkles, Check, Copy, MessageSquare } from "lucide-react";
+import {
+  Send,
+  Heart,
+  Sparkles,
+  Check,
+  Copy,
+  MessageSquare,
+} from "lucide-react";
 import { playChime, playHeartPop } from "@/utils/audio";
 
 interface WishBoxProps {
@@ -20,6 +28,7 @@ export default function WishBox({ wifeName, husbandName }: WishBoxProps) {
     if (!wish.trim()) return;
 
     playChime();
+
     confetti({
       particleCount: 60,
       spread: 70,
@@ -30,13 +39,18 @@ export default function WishBox({ wifeName, husbandName }: WishBoxProps) {
     setSubmitted(true);
   };
 
-  const shareText = `Anh ${husbandName} ơi, điều ước 20/10 của em (${wifeName}) là: "${wish}". Chồng mau duyệt nha! ❤️`;
+  const shareText = `Mẹ yêu ơi ❤️, con muốn gửi mẹ lời nhắn này nhân ngày 20/10: "${wish}". Con chúc mẹ luôn mạnh khỏe, vui vẻ và hạnh phúc. Con yêu mẹ rất nhiều! 💐`;
 
-  const handleCopy = () => {
-    playHeartPop();
-    navigator.clipboard.writeText(shareText);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(shareText);
+      playHeartPop();
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (error) {
+      console.error("Không thể sao chép lời nhắn:", error);
+      alert("Bạn hãy thử mở website bằng HTTPS hoặc localhost rồi sao chép lại nhé!");
+    }
   };
 
   const handleSendSMS = () => {
@@ -47,11 +61,16 @@ export default function WishBox({ wifeName, husbandName }: WishBoxProps) {
     <section className="wishbox-section">
       <div className="section-header">
         <span className="section-tag">
-          <Sparkles size={16} /> Hộp Điều Ước
+          <Sparkles size={16} /> Hộp Lời Yêu Thương
         </span>
-        <h2 className="section-title">Hôm Nay {wifeName} Muốn Gì Nào?</h2>
+
+        <h2 className="section-title">
+          Hôm Nay Con Muốn Nhắn Gửi Điều Gì Đến Mẹ?
+        </h2>
+
         <p className="section-desc">
-          Mọi điều ước của vợ trong ngày 20/10 đều là mệnh lệnh tối cao đối với chồng!
+          Một lời chúc chân thành, một điều ước nhỏ bé cũng đủ làm mẹ vui
+          trong ngày Phụ nữ Việt Nam 20/10. ❤️
         </p>
       </div>
 
@@ -60,10 +79,10 @@ export default function WishBox({ wifeName, husbandName }: WishBoxProps) {
           <form onSubmit={handleSubmit} className="wish-form">
             <div className="wish-input-wrapper">
               <textarea
-                id="wife-wish-input"
+                id="mother-wish-input"
                 value={wish}
                 onChange={(e) => setWish(e.target.value)}
-                placeholder="Ví dụ: Tối nay chồng đưa em đi ăn lẩu nướng nha, hoặc chồng mua tặng em món quà em thích..."
+                placeholder="Ví dụ: Con mong mẹ luôn mạnh khỏe, vui vẻ. Cuối tuần con sẽ phụ mẹ làm việc nhà và cùng mẹ đi chơi nhé! 💐"
                 rows={3}
                 className="wish-textarea"
                 required
@@ -77,48 +96,65 @@ export default function WishBox({ wifeName, husbandName }: WishBoxProps) {
               disabled={!wish.trim()}
             >
               <Send size={18} />
-              <span>Gửi Điều Ước Cho {husbandName}</span>
+              <span>Gửi Lời Yêu Thương Đến Mẹ</span>
               <Heart size={16} fill="currentColor" />
             </button>
           </form>
         ) : (
           <div className="wish-success-box">
             <div className="success-icon-wrap">
-              <Heart size={36} fill="#ff4d79" color="#ff4d79" className="animate-bounce" />
+              <Heart
+                size={36}
+                fill="#ff4d79"
+                color="#ff4d79"
+                className="animate-bounce"
+              />
             </div>
-            <h3 className="success-title">Điều Ước Của Vợ Đã Được Ghi Nhận!</h3>
+
+            <h3 className="success-title">
+              Lời Yêu Thương Dành Cho Mẹ Đã Sẵn Sàng! 💐
+            </h3>
+
             <p className="success-quote">“{wish}”</p>
+
             <p className="success-desc">
-              Chồng {husbandName} đã nhận lệnh và đang chuẩn bị thực hiện 100%! Hãy bấm gửi ngay tin nhắn cho chồng để nhắc nhở nhé:
+              Tình yêu của con chính là món quà ý nghĩa dành cho mẹ.
+              Hãy gửi lời nhắn này để mẹ đọc được những điều con muốn nói nhé!
             </p>
 
             <div className="wish-share-buttons">
               <button
                 id="btn-sms-wish"
+                type="button"
                 onClick={handleSendSMS}
                 className="btn-share-sms"
               >
-                <MessageSquare size={16} /> Gửi Tin Nhắn / SMS
+                <MessageSquare size={16} /> Gửi Tin Nhắn Cho Mẹ
               </button>
 
               <button
                 id="btn-copy-wish"
+                type="button"
                 onClick={handleCopy}
                 className="btn-share-copy"
               >
                 {copied ? <Check size={16} /> : <Copy size={16} />}
-                <span>{copied ? "Đã Sao Chép!" : "Sao Chép Lời Nhắn"}</span>
+                <span>
+                  {copied ? "Đã Sao Chép!" : "Sao Chép Lời Chúc"}
+                </span>
               </button>
 
               <button
                 id="btn-another-wish"
+                type="button"
                 onClick={() => {
                   setSubmitted(false);
                   setWish("");
+                  setCopied(false);
                 }}
                 className="btn-another-wish"
               >
-                Gửi Thêm Điều Ước Khác ✨
+                Viết Thêm Lời Yêu Thương ✨
               </button>
             </div>
           </div>

@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from "react";
@@ -20,11 +21,11 @@ export default function LoveLetter({
 }: LoveLetterProps) {
   const [loveCount, setLoveCount] = useState(0);
 
-  const handleSendLove = (e: React.MouseEvent) => {
+  const handleSendLove = (e: React.MouseEvent<HTMLButtonElement>) => {
     playHeartPop();
     setLoveCount((prev) => prev + 1);
 
-    const rect = (e.target as HTMLElement).getBoundingClientRect();
+    const rect = e.currentTarget.getBoundingClientRect();
     const x = (rect.left + rect.width / 2) / window.innerWidth;
     const y = (rect.top + rect.height / 2) / window.innerHeight;
 
@@ -40,10 +41,16 @@ export default function LoveLetter({
     <section id="love-letter-section" className="letter-section">
       <div className="section-header">
         <span className="section-tag">
-          <Feather size={16} /> Bức Thư Tình Ngày 20/10
+          <Feather size={16} /> Bức Thư Yêu Thương Ngày 20/10
         </span>
-        <h2 className="section-title">Những Lời Tận Đáy Lòng Anh</h2>
-        <p className="section-desc">Viết riêng cho người phụ nữ làm ấm cả thế giới của anh</p>
+
+        <h2 className="section-title">
+          Những Lời Yêu Thương Con Gửi Mẹ ❤️
+        </h2>
+
+        <p className="section-desc">
+          Một bức thư nhỏ dành tặng người phụ nữ tuyệt vời nhất trong cuộc đời con.
+        </p>
       </div>
 
       <div className="parchment-letter">
@@ -53,9 +60,15 @@ export default function LoveLetter({
         <div className="parchment-corner bottom-right" />
 
         <div className="letter-header">
-          <span className="letter-date">Ngày 20 tháng 10 năm 2026</span>
+          <span className="letter-date">
+            Ngày 20 tháng 10 năm 2026
+          </span>
+
           <h3 className="letter-heading">{letterTitle}</h3>
-          <p className="letter-salutation">Gửi {wifeName} yêu dấu của anh,</p>
+
+          <p className="letter-salutation">
+            Gửi mẹ {wifeName} yêu quý của con,
+          </p>
         </div>
 
         <div className="letter-body">
@@ -67,8 +80,10 @@ export default function LoveLetter({
         </div>
 
         <div className="letter-signature-wrap">
-          <p className="sig-sub">Yêu vợ mãi mãi,</p>
+          <p className="sig-sub">Con yêu mẹ thật nhiều,</p>
+
           <p className="sig-name">{husbandName} ❤️</p>
+
           <div className="sig-seal">
             <Heart size={20} fill="#e11d48" color="#e11d48" />
           </div>
@@ -84,11 +99,13 @@ export default function LoveLetter({
               size={20}
               className="fill-current text-rose-500 animate-bounce"
             />
-            <span>Thả tim cho chồng ({loveCount})</span>
+            <span>Gửi tim tặng mẹ ({loveCount})</span>
           </button>
+
           {loveCount > 0 && (
             <span className="love-feedback-text">
-              <Sparkles size={14} /> Chồng nhận được {loveCount} nụ hôn từ vợ rồi nhé! 😘
+              <Sparkles size={14} />
+              Mẹ nhận được {loveCount} trái tim yêu thương từ con rồi nhé! 💗
             </span>
           )}
         </div>

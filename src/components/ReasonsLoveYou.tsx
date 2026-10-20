@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from "react";
@@ -10,7 +11,7 @@ interface ReasonsLoveYouProps {
 }
 
 export default function ReasonsLoveYou({ wifeName }: ReasonsLoveYouProps) {
-  const [activeIds, setActiveIds] = useState<number[]>([1]); // First one open by default
+  const [activeIds, setActiveIds] = useState<number[]>([1]);
 
   const toggleReason = (id: number) => {
     playHeartPop();
@@ -23,17 +24,23 @@ export default function ReasonsLoveYou({ wifeName }: ReasonsLoveYouProps) {
     <section className="reasons-section">
       <div className="section-header">
         <span className="section-tag">
-          <Heart size={16} fill="currentColor" /> Lý Do Anh Yêu Em
+          <Heart size={16} fill="currentColor" /> Những Lý Do Con Yêu Mẹ
         </span>
-        <h2 className="section-title">Vì Sao {wifeName} Là Duy Nhất?</h2>
+
+        <h2 className="section-title">
+          Vì Sao Mẹ {wifeName} Là Tuyệt Vời Nhất? 💗
+        </h2>
+
         <p className="section-desc">
-          Có hàng triệu lý do để yêu em, nhưng đây là 6 điều khiến trái tim anh rung động mỗi ngày
+          Có thật nhiều lý do để con yêu mẹ. Đây là những điều khiến mẹ
+          trở thành người phụ nữ đặc biệt nhất trong trái tim con.
         </p>
       </div>
 
       <div className="reasons-grid">
         {REASONS_LIST.map((reason) => {
           const isOpen = activeIds.includes(reason.id);
+
           return (
             <div
               key={reason.id}
@@ -44,21 +51,28 @@ export default function ReasonsLoveYou({ wifeName }: ReasonsLoveYouProps) {
                 <span className="reason-emoji">{reason.emoji}</span>
                 <span className="reason-num">#{reason.id}</span>
               </div>
+
               <h4 className="reason-title">{reason.title}</h4>
+
               <p className="reason-content">{reason.content}</p>
+
               <div className="reason-footer">
                 <span className="reason-prompt">
                   {isOpen ? (
                     <span className="text-rose-300">
-                      <Sparkles size={14} className="inline mr-1" /> Chạm để thu gọn
+                      <Sparkles size={14} className="inline mr-1" />
+                      Chạm để thu gọn
                     </span>
                   ) : (
-                    <span>Chạm để xem bí mật...</span>
+                    <span>Chạm để khám phá tình yêu của con dành cho mẹ...</span>
                   )}
                 </span>
+
                 <Heart
                   size={16}
-                  className={`reason-heart ${isOpen ? "fill-rose-500 text-rose-500" : ""}`}
+                  className={`reason-heart ${
+                    isOpen ? "fill-rose-500 text-rose-500" : ""
+                  }`}
                 />
               </div>
             </div>

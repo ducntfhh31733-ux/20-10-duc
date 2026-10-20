@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState, useEffect } from "react";
@@ -30,7 +31,11 @@ export default function HeroSection({
     const calculateTime = () => {
       const start = new Date(startDate).getTime();
       const now = new Date().getTime();
-      const diff = Math.max(0, now - start);
+
+      // Không hiển thị thời gian âm nếu ngày chưa đến
+      const diff = Number.isNaN(start)
+        ? 0
+        : Math.max(0, now - start);
 
       const days = Math.floor(diff / (1000 * 60 * 60 * 24));
       const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
@@ -42,12 +47,14 @@ export default function HeroSection({
 
     calculateTime();
     const timer = setInterval(calculateTime, 1000);
+
     return () => clearInterval(timer);
   }, [startDate]);
 
-  const handleBurstHearts = (e: React.MouseEvent) => {
+  const handleBurstHearts = (e: React.MouseEvent<HTMLButtonElement>) => {
     playHeartPop();
-    const rect = (e.target as HTMLElement).getBoundingClientRect();
+
+    const rect = e.currentTarget.getBoundingClientRect();
     const x = (rect.left + rect.width / 2) / window.innerWidth;
     const y = (rect.top + rect.height / 2) / window.innerHeight;
 
@@ -63,49 +70,70 @@ export default function HeroSection({
     <section className="hero-section">
       <div className="hero-badge-wrap">
         <span className="hero-badge">
-          <Sparkles size={16} className="text-rose-300 animate-spin-slow" />
+          <Sparkles
+            size={16}
+            className="text-rose-300 animate-spin-slow"
+          />
           Ngày Phụ Nữ Việt Nam 20/10
-          <Sparkles size={16} className="text-rose-300 animate-spin-slow" />
+          <Sparkles
+            size={16}
+            className="text-rose-300 animate-spin-slow"
+          />
         </span>
       </div>
 
       <h1 className="hero-title">
-        Gửi <span className="highlight-wife-name">{wifeName}</span>, Bông Hoa Rạng Rỡ Nhất Của Anh 🌹
+        Gửi Mẹ{" "}
+        <span className="highlight-wife-name">{wifeName}</span>,
+        Bông Hoa Đẹp Nhất Trong Tim Con 💐
       </h1>
 
       <p className="hero-subtitle">
-        Cảm ơn em vì đã đến, đã luôn bên cạnh và mang lại muôn vàn ấm áp cho cuộc đời anh.
-        Chúc vợ yêu một ngày 20/10 ngập tràn nụ cười, hạnh phúc và yêu thương bất tận!
+        Cảm ơn mẹ vì đã luôn yêu thương, chăm sóc và dành cho con
+        những điều tốt đẹp nhất. Nhân ngày 20/10, con chúc mẹ luôn
+        mạnh khỏe, bình an, vui vẻ và hạnh phúc. Con yêu mẹ rất nhiều! ❤️
       </p>
 
-      {/* Love Duration Clock */}
+      {/* Đồng hồ đếm thời gian */}
       <div className="love-clock-card">
         <div className="clock-header">
           <Clock size={18} className="text-rose-400" />
-          <span>Hành Trình Tình Yêu Của Chúng Mình</span>
-          <Heart size={16} className="text-rose-400" fill="currentColor" />
+          <span>Thời Gian Yêu Thương Của Mẹ Và Con</span>
+          <Heart
+            size={16}
+            className="text-rose-400"
+            fill="currentColor"
+          />
         </div>
 
         <div className="clock-grid">
           <div className="clock-box">
-            <span className="clock-val">{timeTogether.days.toLocaleString()}</span>
+            <span className="clock-val">
+              {timeTogether.days.toLocaleString("vi-VN")}
+            </span>
             <span className="clock-unit">Ngày</span>
           </div>
+
           <span className="clock-divider">:</span>
+
           <div className="clock-box">
             <span className="clock-val">
               {String(timeTogether.hours).padStart(2, "0")}
             </span>
             <span className="clock-unit">Giờ</span>
           </div>
+
           <span className="clock-divider">:</span>
+
           <div className="clock-box">
             <span className="clock-val">
               {String(timeTogether.minutes).padStart(2, "0")}
             </span>
             <span className="clock-unit">Phút</span>
           </div>
+
           <span className="clock-divider">:</span>
+
           <div className="clock-box">
             <span className="clock-val accent-seconds">
               {String(timeTogether.seconds).padStart(2, "0")}
@@ -115,11 +143,12 @@ export default function HeroSection({
         </div>
 
         <p className="clock-sub">
-          Mỗi một giây trôi qua, anh lại thấy mình may mắn hơn ngày hôm qua vì có em ❤️
+          Thời gian cứ trôi qua, nhưng tình yêu con dành cho mẹ
+          sẽ luôn đong đầy. Cảm ơn mẹ vì đã là mẹ của con! ❤️
         </p>
       </div>
 
-      {/* CTA action buttons */}
+      {/* Các nút điều hướng */}
       <div className="hero-ctas">
         <button
           id="btn-scroll-letter"
@@ -127,7 +156,7 @@ export default function HeroSection({
           className="btn-primary-hero"
         >
           <Mail size={18} />
-          <span>Đọc Thư Tình Gửi Vợ</span>
+          <span>Đọc Thư Gửi Mẹ</span>
         </button>
 
         <button
@@ -136,17 +165,17 @@ export default function HeroSection({
           className="btn-secondary-hero"
         >
           <Gift size={18} />
-          <span>Nhận Voucher Quà 20/10</span>
+          <span>Khám Phá Món Quà 20/10</span>
         </button>
 
         <button
           id="btn-burst-love"
           onClick={handleBurstHearts}
           className="btn-heart-burst"
-          title="Thả ngàn trái tim cho vợ!"
+          title="Gửi thật nhiều trái tim đến mẹ!"
         >
           <Heart size={20} fill="#ff4d79" color="#ff4d79" />
-          <span>Thả Tim</span>
+          <span>Thả Tim Tặng Mẹ</span>
         </button>
       </div>
     </section>

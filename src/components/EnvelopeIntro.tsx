@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from "react";
@@ -11,18 +12,23 @@ interface EnvelopeIntroProps {
   onOpen: () => void;
 }
 
-export default function EnvelopeIntro({ wifeName, songUrl, onOpen }: EnvelopeIntroProps) {
+export default function EnvelopeIntro({
+  wifeName,
+  songUrl,
+  onOpen,
+}: EnvelopeIntroProps) {
   const [isOpening, setIsOpening] = useState(false);
 
   const handleOpenEnvelope = () => {
     if (isOpening) return;
+
     setIsOpening(true);
 
-    // Audio effects
+    // Hiệu ứng âm thanh
     playChime();
     startRomanticMelody(undefined, songUrl);
 
-    // Multistage Confetti explosion
+    // Pháo giấy lần thứ nhất
     confetti({
       particleCount: 80,
       spread: 70,
@@ -30,6 +36,7 @@ export default function EnvelopeIntro({ wifeName, songUrl, onOpen }: EnvelopeInt
       colors: ["#ff4d79", "#ff758c", "#ffd700", "#ffffff", "#ff80bf"],
     });
 
+    // Pháo giấy hai bên
     setTimeout(() => {
       confetti({
         particleCount: 100,
@@ -38,6 +45,7 @@ export default function EnvelopeIntro({ wifeName, songUrl, onOpen }: EnvelopeInt
         origin: { x: 0 },
         colors: ["#ff4d79", "#ff758c", "#ffd700", "#ffffff"],
       });
+
       confetti({
         particleCount: 100,
         angle: 120,
@@ -47,7 +55,7 @@ export default function EnvelopeIntro({ wifeName, songUrl, onOpen }: EnvelopeInt
       });
     }, 300);
 
-    // Trigger reveal after animation finishes
+    // Hiển thị nội dung món quà sau khi mở phong thư
     setTimeout(() => {
       onOpen();
     }, 1200);
@@ -70,26 +78,39 @@ export default function EnvelopeIntro({ wifeName, songUrl, onOpen }: EnvelopeInt
 
             <div className="letter-peek">
               <Sparkles size={16} className="text-amber-300" />
-              <span>Thư gửi {wifeName} ❤️</span>
+              <span>Thư gửi Mẹ {wifeName} ❤️</span>
             </div>
           </div>
         </div>
 
         <div className="envelope-instruction">
           <p className="instruction-badge">
-            <Sparkles size={16} /> Món Quà Bí Mật 20/10
+            <Sparkles size={16} />
+            Món Quà Bí Mật Dành Cho Mẹ
           </p>
-          <h1 className="instruction-title">Gửi Người Phụ Nữ Anh Yêu Nhất</h1>
+
+          <h1 className="instruction-title">
+            Gửi Người Mẹ Tuyệt Vời Nhất
+          </h1>
+
           <p className="instruction-sub">
-            Chạm vào phong thư để mở món quà đặc biệt anh dành riêng cho {wifeName} nhé! ✨
+            Mẹ ơi, con có một món quà đặc biệt muốn dành tặng mẹ.
+            Hãy chạm vào phong thư để khám phá những lời yêu thương
+            con gửi đến mẹ nhé! 💗
           </p>
+
           <button
             id="btn-open-envelope"
             onClick={handleOpenEnvelope}
             className="envelope-open-btn"
+            disabled={isOpening}
           >
-            <span>Mở Quà Ngay</span>
-            <Heart size={20} className="pulse-heart" fill="currentColor" />
+            <span>{isOpening ? "Đang Mở Quà..." : "Mở Quà Ngay"}</span>
+            <Heart
+              size={20}
+              className="pulse-heart"
+              fill="currentColor"
+            />
           </button>
         </div>
       </div>

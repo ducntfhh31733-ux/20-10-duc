@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState, useEffect } from "react";
@@ -34,19 +35,23 @@ export default function HusbandCoupons({ wifeName }: HusbandCouponsProps) {
 
   useEffect(() => {
     try {
-      const saved = localStorage.getItem("wife_coupons_2010");
+      const saved = localStorage.getItem("mother_coupons_2010");
+
       if (saved) {
         setCoupons(JSON.parse(saved));
       }
     } catch (e) {
-      console.error(e);
+      console.error("Không thể tải voucher đã lưu:", e);
     }
   }, []);
 
-  const handleRedeem = (id: string, e: React.MouseEvent) => {
+  const handleRedeem = (
+    id: string,
+    e: React.MouseEvent<HTMLButtonElement>
+  ) => {
     playChime();
 
-    const rect = (e.target as HTMLElement).getBoundingClientRect();
+    const rect = e.currentTarget.getBoundingClientRect();
     const x = (rect.left + rect.width / 2) / window.innerWidth;
     const y = (rect.top + rect.height / 2) / window.innerHeight;
 
@@ -58,38 +63,56 @@ export default function HusbandCoupons({ wifeName }: HusbandCouponsProps) {
     });
 
     setCoupons((prev) => {
-      const updated = prev.map((c) =>
-        c.id === id ? { ...c, redeemed: !c.redeemed } : c
+      const updated = prev.map((coupon) =>
+        coupon.id === id
+          ? { ...coupon, redeemed: !coupon.redeemed }
+          : coupon
       );
+
       try {
-        localStorage.setItem("wife_coupons_2010", JSON.stringify(updated));
+        localStorage.setItem(
+          "mother_coupons_2010",
+          JSON.stringify(updated)
+        );
       } catch (err) {
-        console.error(err);
+        console.error("Không thể lưu trạng thái voucher:", err);
       }
+
       return updated;
     });
   };
 
-  const redeemedCount = coupons.filter((c) => c.redeemed).length;
+  const redeemedCount = coupons.filter(
+    (coupon) => coupon.redeemed
+  ).length;
 
   return (
     <section id="coupons-section" className="coupons-section">
       <div className="section-header">
         <span className="section-tag">
-          <Gift size={16} /> Quà Tặng Độc Quyền 20/10
+          <Gift size={16} /> Món Quà Yêu Thương 20/10
         </span>
-        <h2 className="section-title">Voucher Đặc Quyền Của {wifeName}</h2>
+
+        <h2 className="section-title">
+          Voucher Đặc Biệt Dành Tặng Mẹ {wifeName} 💐
+        </h2>
+
         <p className="section-desc">
-          Những chiếc vé quyền lực 100% có hiệu lực pháp lý do chính tay Chồng ký duyệt!
+          Những chiếc voucher yêu thương do chính tay con tạo ra.
+          Mỗi chiếc vé là một lời hứa nhỏ để con chăm sóc mẹ nhiều hơn! ❤️
         </p>
+
         <div className="coupons-progress-pill">
-          <span>Đã sử dụng: {redeemedCount}/{coupons.length} voucher</span>
+          <span>
+            Đã thực hiện: {redeemedCount}/{coupons.length} voucher
+          </span>
         </div>
       </div>
 
       <div className="coupons-grid">
         {coupons.map((coupon) => {
           const isRedeemed = coupon.redeemed;
+
           return (
             <div
               key={coupon.id}
@@ -100,8 +123,11 @@ export default function HusbandCoupons({ wifeName }: HusbandCouponsProps) {
 
               <div className="coupon-header">
                 <div className="coupon-badge">{coupon.badge}</div>
+
                 <div className="coupon-icon">
-                  {iconMap[coupon.iconName] || <Heart className="coupon-icon-svg" />}
+                  {iconMap[coupon.iconName] || (
+                    <Heart className="coupon-icon-svg" />
+                  )}
                 </div>
               </div>
 
@@ -114,15 +140,19 @@ export default function HusbandCoupons({ wifeName }: HusbandCouponsProps) {
                 <button
                   id={`btn-redeem-${coupon.id}`}
                   onClick={(e) => handleRedeem(coupon.id, e)}
-                  className={`btn-redeem ${isRedeemed ? "btn-redeemed" : ""}`}
+                  className={`btn-redeem ${
+                    isRedeemed ? "btn-redeemed" : ""
+                  }`}
                 >
                   {isRedeemed ? (
                     <>
-                      <CheckCircle size={16} /> ĐÃ DUYỆT (Hủy đổi)
+                      <CheckCircle size={16} />
+                      ĐÃ THỰC HIỆN (Hoàn tác)
                     </>
                   ) : (
                     <>
-                      <Gift size={16} /> Đổi Ngay
+                      <Gift size={16} />
+                      Nhận Yêu Thương
                     </>
                   )}
                 </button>
@@ -131,8 +161,8 @@ export default function HusbandCoupons({ wifeName }: HusbandCouponsProps) {
               {isRedeemed && (
                 <div className="coupon-stamp-overlay">
                   <div className="coupon-stamp">
-                    <span>ĐÃ DUYỆT</span>
-                    <small>CHỒNG PHỤC VỤ</small>
+                    <span>ĐÃ THỰC HIỆN</span>
+                    <small>CON TẶNG MẸ ❤️</small>
                   </div>
                 </div>
               )}
